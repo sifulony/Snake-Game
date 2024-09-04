@@ -2,7 +2,7 @@
 
 A classic 🐍 Snake Game 🐍 implemented using HTML, CSS, and JavaScript. Guide the snake to eat the food and grow longer while avoiding collisions with the walls and itself.
 
-[![GitHub License](https://img.shields.io/github/license/sifulony/Snake-Game)](https://opensource.org/licenses/GPL-3.0)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://opensource.org/licenses/GPL-3.0)
 
 <p align="center">
   <img src="https://sifulony.github.io/Snake-Game/asset/snake_ss_20140904_1.jpeg" alt="🐍 Snake Game 🐍">
