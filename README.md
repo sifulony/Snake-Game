@@ -4,6 +4,10 @@ A classic 🐍Snake Game🐍 implemented using HTML, CSS, and JavaScript. Try to
 
 [![GitHub License](https://img.shields.io/github/license/sifulony/Snake-Game)](https://opensource.org/licenses/MIT)
 
+<p align="center">
+  <img src="https://sifulony.github.io/Snake-Game/asset/snake_ss_20140904.png" alt="🐍Snake Game🐍">
+</p>
+
 ## Features
 
 - **Playable Snake Game**: Use arrow keys or a joystick button to control the snake.
