@@ -1,4 +1,3 @@
-// Basic setup for the Snake game
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -9,16 +8,33 @@ let snake = [{ x: 10 * grid, y: 10 * grid }];
 let direction = 'RIGHT';
 let apple = { x: 15 * grid, y: 15 * grid };
 let score = 0;
-let gameInterval;
+let lastTime = 0;
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = 'green';
-    snake.forEach(part => ctx.fillRect(part.x, part.y, grid, grid));
 
+    // Draw apple with a simple 3D effect
     ctx.fillStyle = 'red';
     ctx.fillRect(apple.x, apple.y, grid, grid);
+    ctx.fillStyle = 'darkred';
+    ctx.fillRect(apple.x + 3, apple.y + 3, grid - 6, grid - 6);
 
+    // Draw snake with a 3D effect
+    snake.forEach((part, index) => {
+        const isHead = index === 0;
+        ctx.fillStyle = isHead ? 'darkgreen' : 'green';
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(part.x, part.y, grid, grid);
+        ctx.fillRect(part.x, part.y, grid, grid);
+
+        if (!isHead) {
+            ctx.fillStyle = 'lightgreen';
+            ctx.fillRect(part.x + 2, part.y + 2, grid - 4, grid - 4);
+        }
+    });
+
+    // Draw score
     ctx.fillStyle = 'black';
     ctx.font = '20px Arial';
     ctx.fillText(`Score: ${score}`, 10, 20);
@@ -42,6 +58,12 @@ function update() {
             break;
     }
 
+    // Wrap around the canvas edges
+    if (head.x >= canvas.width) head.x = 0;
+    if (head.x < 0) head.x = canvas.width - grid;
+    if (head.y >= canvas.height) head.y = 0;
+    if (head.y < 0) head.y = canvas.height - grid;
+
     snake.unshift(head);
 
     if (head.x === apple.x && head.y === apple.y) {
@@ -51,8 +73,8 @@ function update() {
         snake.pop();
     }
 
-    if (head.x < 0 || head.y < 0 || head.x >= canvas.width || head.y >= canvas.height || collision()) {
-        clearInterval(gameInterval);
+    if (collision()) {
+        cancelAnimationFrame(animationId);
         alert('Game Over');
     }
 
@@ -81,21 +103,30 @@ function changeDirection(event) {
     if (key === 'ArrowRight' && direction !== 'LEFT') direction = 'RIGHT';
 }
 
+function gameLoop(timestamp) {
+    if (timestamp - lastTime >= 100) { // Update every 100ms
+        update();
+        lastTime = timestamp;
+    }
+    animationId = requestAnimationFrame(gameLoop);
+}
+
 document.getElementById('startButton').addEventListener('click', () => {
-    if (gameInterval) clearInterval(gameInterval);
     snake = [{ x: 10 * grid, y: 10 * grid }];
     direction = 'RIGHT';
     score = 0;
     placeApple();
-    gameInterval = setInterval(update, 100);
+    lastTime = 0;
+    if (animationId) cancelAnimationFrame(animationId);
+    animationId = requestAnimationFrame(gameLoop);
 });
 
 document.getElementById('pauseButton').addEventListener('click', () => {
-    clearInterval(gameInterval);
+    cancelAnimationFrame(animationId);
 });
 
 document.getElementById('resetButton').addEventListener('click', () => {
-    clearInterval(gameInterval);
+    cancelAnimationFrame(animationId);
     snake = [{ x: 10 * grid, y: 10 * grid }];
     direction = 'RIGHT';
     score = 0;
@@ -105,4 +136,5 @@ document.getElementById('resetButton').addEventListener('click', () => {
 
 document.addEventListener('keydown', changeDirection);
 
+let animationId;
 draw();
