@@ -5,7 +5,7 @@ A classic 🐍Snake Game🐍 implemented using HTML, CSS, and JavaScript. Try to
 [![GitHub License](https://img.shields.io/github/license/sifulony/Snake-Game?style=flat-square)](https://opensource.org/licenses/GPL-3.0)
 
 <p align="center">
-  <img src="https://sifulony.github.io/Snake-Game/asset/snake_ss_20140904.png" alt="🐍 Snake Game 🐍">
+  <img src="https://sifulony.github.io/Snake-Game/asset/snake_ss_20140904_1.jpeg" alt="🐍 Snake Game 🐍">
 </p>
 
 ## Features
