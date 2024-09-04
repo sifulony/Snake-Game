@@ -1,23 +1,23 @@
-# 🐍Snake Game🐍
+# 🐍 Snake Game 🐍
 
 A classic 🐍Snake Game🐍 implemented using HTML, CSS, and JavaScript. Try to guide the snake to eat the food and grow longer while avoiding collisions with the walls and itself.
 
-[![GitHub License](https://img.shields.io/github/license/sifulony/Snake-Game)](https://opensource.org/licenses/MIT)
+[![GitHub License](https://img.shields.io/github/license/sifulony/Snake-Game?style=flat-square)](https://opensource.org/licenses/GPL-3.0)
 
 <p align="center">
-  <img src="https://sifulony.github.io/Snake-Game/asset/snake_ss_20140904.png" alt="🐍Snake Game🐍">
+  <img src="https://sifulony.github.io/Snake-Game/asset/snake_ss_20140904.png" alt="🐍 Snake Game 🐍">
 </p>
 
 ## Features
 
-- **Playable Snake Game**: Use arrow keys or a joystick button to control the snake.
+- **Playable Snake Game**: Use arrow keys or joystick buttons to control the snake.
 - **Score Tracking**: Keep track of your score as you play.
 - **Game Controls**: Start, pause, and reset the game using the provided buttons.
 - **Responsive Design**: Playable on different screen sizes.
 
 ## Installation
 
-To get started with the 🐍Snake Game🐍 on your local machine, follow these steps:
+To get started with the 🐍 Snake Game 🐍 on your local machine, follow these steps:
 
 1. **Clone the Repository**:
     ```bash
@@ -52,7 +52,7 @@ Contributions are welcome! If you'd like to contribute:
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU General Public License (GPL) v3.0. See the [LICENSE](LICENSE) file for details.
 
 ## Contact
 

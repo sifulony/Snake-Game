@@ -9,6 +9,7 @@ let direction = 'RIGHT';
 let apple = { x: 15 * grid, y: 15 * grid };
 let score = 0;
 let lastTime = 0;
+let joystickDirection = null;
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -96,11 +97,24 @@ function placeApple() {
 }
 
 function changeDirection(event) {
-    const key = event.key;
-    if (key === 'ArrowUp' && direction !== 'DOWN') direction = 'UP';
-    if (key === 'ArrowDown' && direction !== 'UP') direction = 'DOWN';
-    if (key === 'ArrowLeft' && direction !== 'RIGHT') direction = 'LEFT';
-    if (key === 'ArrowRight' && direction !== 'LEFT') direction = 'RIGHT';
+    if (event.key === 'ArrowUp' && direction !== 'DOWN') direction = 'UP';
+    if (event.key === 'ArrowDown' && direction !== 'UP') direction = 'DOWN';
+    if (event.key === 'ArrowLeft' && direction !== 'RIGHT') direction = 'LEFT';
+    if (event.key === 'ArrowRight' && direction !== 'LEFT') direction = 'RIGHT';
+}
+
+function handleJoystick(event) {
+    const touch = event.touches[0];
+    const rect = document.getElementById('controls').getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+
+    // Determine direction based on touch position
+    if (x < rect.width / 2) {
+        direction = y < rect.height / 2 ? 'UP' : 'DOWN';
+    } else {
+        direction = y < rect.height / 2 ? 'RIGHT' : 'LEFT';
+    }
 }
 
 function gameLoop(timestamp) {
@@ -135,6 +149,8 @@ document.getElementById('resetButton').addEventListener('click', () => {
 });
 
 document.addEventListener('keydown', changeDirection);
+document.getElementById('controls').addEventListener('touchstart', handleJoystick);
+document.getElementById('controls').addEventListener('touchmove', handleJoystick);
 
 let animationId;
 draw();
