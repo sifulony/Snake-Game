@@ -1,6 +1,6 @@
 # 🐍 Snake Game 🐍
 
-A classic 🐍Snake Game🐍 implemented using HTML, CSS, and JavaScript. Try to guide the snake to eat the food and grow longer while avoiding collisions with the walls and itself.
+A classic 🐍 Snake Game 🐍 implemented using HTML, CSS, and JavaScript. Guide the snake to eat the food and grow longer while avoiding collisions with the walls and itself.
 
 [![GitHub License](https://img.shields.io/github/license/sifulony/Snake-Game?style=flat-square)](https://opensource.org/licenses/GPL-3.0)
 
@@ -35,7 +35,7 @@ To get started with the 🐍 Snake Game 🐍 on your local machine, follow these
 ## Usage
 
 - **Controls**:
-  - Use the **Up**, **Left**, **Down**, and **Right** buttons or the joystick button to control the snake's movement.
+  - Use the **Up**, **Left**, **Down**, and **Right** buttons or the joystick buttons to control the snake's movement.
   - **Start**: Begins a new game.
   - **Pause**: Pauses the game.
   - **Reset**: Restarts the game from the beginning.
