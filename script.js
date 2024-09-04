@@ -9,18 +9,18 @@ let direction = 'RIGHT';
 let apple = { x: 15 * grid, y: 15 * grid };
 let score = 0;
 let lastTime = 0;
-let joystickDirection = null;
+let animationId;
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw apple with a simple 3D effect
+    // Draw apple
     ctx.fillStyle = 'red';
     ctx.fillRect(apple.x, apple.y, grid, grid);
     ctx.fillStyle = 'darkred';
     ctx.fillRect(apple.x + 3, apple.y + 3, grid - 6, grid - 6);
 
-    // Draw snake with a 3D effect
+    // Draw snake
     snake.forEach((part, index) => {
         const isHead = index === 0;
         ctx.fillStyle = isHead ? 'darkgreen' : 'green';
@@ -103,28 +103,6 @@ function changeDirection(event) {
     if (event.key === 'ArrowRight' && direction !== 'LEFT') direction = 'RIGHT';
 }
 
-function handleJoystick(event) {
-    const touch = event.touches[0];
-    const rect = document.getElementById('controls').getBoundingClientRect();
-    const x = touch.clientX - rect.left;
-    const y = touch.clientY - rect.top;
-
-    // Determine direction based on touch position
-    if (x < rect.width / 2) {
-        direction = y < rect.height / 2 ? 'UP' : 'DOWN';
-    } else {
-        direction = y < rect.height / 2 ? 'RIGHT' : 'LEFT';
-    }
-}
-
-function gameLoop(timestamp) {
-    if (timestamp - lastTime >= 100) { // Update every 100ms
-        update();
-        lastTime = timestamp;
-    }
-    animationId = requestAnimationFrame(gameLoop);
-}
-
 document.getElementById('startButton').addEventListener('click', () => {
     snake = [{ x: 10 * grid, y: 10 * grid }];
     direction = 'RIGHT';
@@ -149,8 +127,29 @@ document.getElementById('resetButton').addEventListener('click', () => {
 });
 
 document.addEventListener('keydown', changeDirection);
-document.getElementById('controls').addEventListener('touchstart', handleJoystick);
-document.getElementById('controls').addEventListener('touchmove', handleJoystick);
 
-let animationId;
+document.getElementById('up').addEventListener('click', () => {
+    if (direction !== 'DOWN') direction = 'UP';
+});
+
+document.getElementById('down').addEventListener('click', () => {
+    if (direction !== 'UP') direction = 'DOWN';
+});
+
+document.getElementById('left').addEventListener('click', () => {
+    if (direction !== 'RIGHT') direction = 'LEFT';
+});
+
+document.getElementById('right').addEventListener('click', () => {
+    if (direction !== 'LEFT') direction = 'RIGHT';
+});
+
+function gameLoop(timestamp) {
+    if (timestamp - lastTime >= 100) { // Update every 100ms
+        update();
+        lastTime = timestamp;
+    }
+    animationId = requestAnimationFrame(gameLoop);
+}
+
 draw();

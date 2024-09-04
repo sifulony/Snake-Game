@@ -9,17 +9,24 @@
 </head>
 <body>
     <header>
-        <h1>🐍Snake Game🐍</h1>
+        <h1>🐍 Snake Game 🐍</h1>
     </header>
     <main>
         <canvas id="gameCanvas" width="400" height="400"></canvas>
         <div id="gameStatus">
             <p>Score: <span id="score">0</span></p>
         </div>
-        <div id="joystick">
-            <div id="joystickButton">↔️</div>
-        </div>
         <div id="controls">
+            <div class="control-group">
+                <button id="up">Up</button>
+                <div>
+                    <button id="left">Left</button>
+                    <button id="right">Right</button>
+                </div>
+                <button id="down">Down</button>
+            </div>
+        </div>
+        <div id="control-buttons">
             <button id="startButton">Start</button>
             <button id="pauseButton">Pause</button>
             <button id="resetButton">Reset</button>
